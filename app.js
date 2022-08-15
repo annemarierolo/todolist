@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 const app = express();
-const port = 3000;
 
 app.set('view engine', 'ejs');
 
@@ -135,7 +134,13 @@ app.get('/about', (req, res) => {
     res.render("about");
 })
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
+app.listen(port);
+
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+    console.log(`Server running`);
 })
