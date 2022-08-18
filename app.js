@@ -62,7 +62,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/:customListName', (req, res) => {
-
+    //Creating new List if doesn't exist or displaying and existing List
     const customListName = _.capitalize(req.params.customListName);
     List.findOne({ name: customListName }, (err, foundList) => {
         if (!err) {
@@ -110,7 +110,7 @@ app.post('/', (req, res) => {
 app.post('/delete', (req, res) => {
     const itemCheckedId = req.body.checkedbox;
     const listName = req.body.listItem;
-
+    //Remove Item from list by ID
     if (listName === "Today") {
         Item.findByIdAndRemove(itemCheckedId, (err) => {
             if (!err) {
